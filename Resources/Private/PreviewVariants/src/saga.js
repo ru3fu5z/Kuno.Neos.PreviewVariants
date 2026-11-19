@@ -1,4 +1,4 @@
-import {takeLatest, delay} from 'redux-saga/effects';
+import {takeLatest, call} from 'redux-saga/effects';
 import {actionTypes} from '@neos-project/neos-ui-redux-store';
 
 import {getAllVariants} from './store';
@@ -11,7 +11,8 @@ import {applyVariant} from './guestFrame';
 export function* reapplyOnFrameLoad() {
     yield takeLatest(actionTypes.UI.ContentCanvas.STOP_LOADING, function* () {
         // The core guest frame initialisation runs on the same action; give it a tick.
-        yield delay(50);
+        // `delay` is not available in the host's redux-saga effects shim, so wait via a plain promise.
+        yield call(() => new Promise(resolve => setTimeout(resolve, 50)));
         const variants = getAllVariants();
         Object.keys(variants).forEach(contextPath => applyVariant(contextPath, variants[contextPath]));
     });
