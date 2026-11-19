@@ -15,11 +15,12 @@ repository and is never published.
 1. The element renders all of its variants in the backend and marks each
    container with `data-preview-variant="<key>"`. The server decides which one is
    visible (usually via the `hidden` attribute) — exactly as on the website.
-2. The inspector view shows a button group: *As on the website* plus one button
-   per variant. Clicking a variant toggles the `hidden` attribute of the variant
-   containers inside the focused node in the guest frame and marks the node with
-   `data-preview-variant-active="<key>"`. *As on the website* restores the
-   server-rendered state.
+2. The inspector view shows one button per variant; the one the server rendered
+   as visible (what the website shows right now) is preselected. Clicking another
+   variant toggles the `hidden` attribute of the variant containers inside the
+   focused node in the guest frame and marks the node with
+   `data-preview-variant-active="<key>"`. Clicking the live variant again restores
+   the server-rendered state and forgets the choice.
 3. The choice is stored in `sessionStorage` of the backend window and re-applied
    whenever the guest frame reloads (e.g. after *Apply*).
 
@@ -40,7 +41,6 @@ Nothing is committed to the node; the view never calls `commit`.
           position: 20
           view: 'Kuno.Neos/Inspector/Views/PreviewVariants'
           viewOptions:
-            autoLabel: 'Wie auf der Website'   # optional, translatable id or plain text
             variants:
               before: 'Countdown'
               after: 'Nach Ablauf'

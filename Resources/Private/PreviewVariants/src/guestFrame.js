@@ -39,6 +39,28 @@ const applyToElement = (nodeElement, variant) => {
     nodeElement.setAttribute(ACTIVE, variant);
 };
 
+/**
+ * The variant the server rendered as visible, i.e. what the website shows right now.
+ * Uses the remembered original state when the node has already been switched.
+ */
+export const getLiveVariant = contextPath => {
+    let elements = [];
+    try {
+        elements = findAllOccurrencesOfNodeInGuestFrame(contextPath) || [];
+    } catch (e) {
+        return null;
+    }
+    for (let i = 0; i < elements.length; i++) {
+        const live = variantContainers(elements[i]).find(container =>
+            container.dataset[ORIGINAL] !== undefined ? container.dataset[ORIGINAL] === '0' : !container.hidden
+        );
+        if (live) {
+            return live.dataset.previewVariant;
+        }
+    }
+    return null;
+};
+
 export const applyVariant = (contextPath, variant) => {
     let elements = [];
     try {

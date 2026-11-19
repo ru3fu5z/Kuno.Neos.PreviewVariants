@@ -1,7 +1,7 @@
 {
   "name": "kuno-neos-preview-variants",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Neos UI plugin: inspector view to preview display variants of a node",
   "scripts": {
     "build": "node build.js",
