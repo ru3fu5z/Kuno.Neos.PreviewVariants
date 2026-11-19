@@ -1,0 +1,19 @@
+{
+  "name": "kuno/neos-preview-variants",
+  "type": "neos-package",
+  "description": "Inspector view for the Neos UI that lets editors preview the display variants of a single content node without persisting anything.",
+  "license": "MIT",
+  "require": {
+    "neos/neos-ui": "^8.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kuno\\Neos\\PreviewVariants\\": "Classes/"
+    }
+  },
+  "extra": {
+    "neos": {
+      "package-key": "Kuno.Neos.PreviewVariants"
+    }
+  }
+}

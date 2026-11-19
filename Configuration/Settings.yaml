@@ -1,0 +1,7 @@
+Neos:
+  Neos:
+    Ui:
+      resources:
+        javascript:
+          'Kuno.Neos.PreviewVariants:Plugin':
+            resource: 'resource://Kuno.Neos.PreviewVariants/Public/JavaScript/PreviewVariants/Plugin.js'
