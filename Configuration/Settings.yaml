@@ -5,3 +5,7 @@ Neos:
         javascript:
           'Kuno.Neos.PreviewVariants:Plugin':
             resource: 'resource://Kuno.Neos.PreviewVariants/Public/JavaScript/PreviewVariants/Plugin.js'
+    userInterface:
+      translation:
+        autoInclude:
+          'Kuno.Neos.PreviewVariants': ['Main']

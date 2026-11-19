@@ -67,19 +67,20 @@ class PreviewVariantsView extends PureComponent {
         this.setState({variant});
     };
 
-    translate(label) {
-        return this.props.i18nRegistry.translate(label, label);
+    translate(label, fallback) {
+        return this.props.i18nRegistry.translate(label, fallback || label);
     }
 
     render() {
         const {options} = this.props;
         const variants = (options && options.variants) || {};
         const autoLabel = (options && options.autoLabel) || 'Kuno.Neos.PreviewVariants:Main:auto';
+        const autoFallback = (options && options.autoLabel) || 'As on the website';
 
         // ButtonGroup iterates `children` as a flat array and reads `child.props.id`,
         // so the buttons are built as one flat list instead of nested JSX children.
         const buttons = [
-            <Button key={AUTO} id={AUTO} style="lighter" size="small">{this.translate(autoLabel)}</Button>
+            <Button key={AUTO} id={AUTO} style="lighter" size="small">{this.translate(autoLabel, autoFallback)}</Button>
         ].concat(Object.keys(variants).map(key => (
             <Button key={key} id={key} style="lighter" size="small">{this.translate(variants[key])}</Button>
         )));
